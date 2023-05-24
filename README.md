@@ -1,0 +1,2 @@
+# lemonsqueezy-logsnag-nextjs
+ 
