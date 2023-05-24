@@ -25,7 +25,7 @@ Webhook events will be sent for all test mode purchases, just as they will for l
 
 ## Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flmsqueezy%2Flogsnag-nextjs&env=LEMONSQUEEZY_WEBHOOK_SECRET,LOGSNAG_TOKEN,LOGSNAG_PROJECT,LOGSNAG_CHANNEL&project-name=lemonsqueezy-logsnag-nextjs&repository-name=lemonsqueezy-logsnag-nextjs)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flmsqueezy%2Flogsnag-nextjs&env=LEMONSQUEEZY_WEBHOOK_SECRET,LOGSNAG_TOKEN,LOGSNAG_PROJECT,LOGSNAG_CHANNEL&envDescription=https%3A%2F%2Fgithub.com%2Flmsqueezy%2Flogsnag-nextjs%23environment-variables&project-name=lemonsqueezy-logsnag-nextjs&repository-name=lemonsqueezy-logsnag-nextjs)
 
 ### Environment variables
 
