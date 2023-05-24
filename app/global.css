@@ -12,3 +12,16 @@ body {
   max-width: 800px;
   margin: 6rem auto;
 }
+
+ul {
+  padding-left: 0;
+}
+li {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0;
+}
+li svg {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
