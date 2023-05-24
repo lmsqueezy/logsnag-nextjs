@@ -1,0 +1,14 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  color: #111;
+}
+
+.container {
+  max-width: 800px;
+  margin: 6rem auto;
+}
