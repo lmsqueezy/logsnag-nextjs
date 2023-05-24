@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     case 'order_created':
 
       eventData = {
-        channel: "sales-testing",
+        channel: process.env.LOGSNAG_CHANNEL,
         event: "New order",
         description: `${obj['first_order_item']['product_name']} (${obj['first_order_item']['variant_name']})\n${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nOrder #${obj['order_number']} • ${obj['user_email']} • ${obj['user_name']}`,
         icon: "💳",
