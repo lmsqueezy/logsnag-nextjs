@@ -7,21 +7,12 @@ A Next.js app that sends webhook events to LogSnag.
 ## Get set up
 
 1. [Create a Lemon Squeezy store](https://app.lemonsqueezy.com/register)
-2. [Set up webhooks](https://app.lemonsqueezy.com/help/webhooks)
+2. [Set up webhooks](https://app.lemonsqueezy.com/help/webhooks), selecting the events you want to track in LogSnag.
 3. [Sign up to LogSnag](https://app.logsnag.com/)
 4. [Create an API token](https://app.logsnag.com/dashboard/settings/api)
-5. Deploy this app
-6. Add environment variables from Lemon Squeezy and LogSnag
+5. Deploy this app (see below) and add environment variables from Lemon Squeezy and LogSnag
 
-## Testing
-
-If you want to test this app, switch your Lemon Squeezy to "test mode" and create a product or two.
-
-Make a test channel in LogSnag, where you can send events during testing (you can delete this channel when you're done).
-
-Now make purchases with your test mode products. You can use [test cards](https://docs.lemonsqueezy.com/help/getting-started/test-mode#test-card-numbers) to mimic real purchases.
-
-Webhook events will be sent for all test mode purchases, just as they will for live purchases.
+Now any events you selected in step 2 will appear in LogSnag as soon as they occur.
 
 ## Deploy to Vercel
 
@@ -29,7 +20,19 @@ Webhook events will be sent for all test mode purchases, just as they will for l
 
 ### Environment variables
 
-- `LEMONSQUEEZY_WEBHOOK_SECRET` - The signing secret you added in the webhook creation form.
-- `LOGSNAG_TOKEN` - API token from LogSnag.
+As part of the deployment you need to set 
+
+- `LEMONSQUEEZY_WEBHOOK_SECRET` - The signing secret you added in the webhook creation form. ([Go to Lemon Squeezy webhook settings](https://app.lemonsqueezy.com/help/webhooks))
+- `LOGSNAG_TOKEN` - API token from LogSnag ([Go to LogSnag API settings](https://app.logsnag.com/dashboard/settings/api))
 - `LOGSNAG_PROJECT` - Name of the project in LogSnag that you want events sent to.
 - `LOGSNAG_CHANNEL` - Name of the channel in your LogSnag project that you want events sent to.
+
+## Test the integration
+
+If you want to test this app, switch your Lemon Squeezy to "test mode" then create a product or two and set up webhooks pointing to this app's `/webhook` endpoint.
+
+Make a test channel in LogSnag where you can send events during testing (you can delete this channel when you're done) and use this as your `LOGSNAG_CHANNEL` enviroinment variable.
+
+Now make purchases with your test mode products. You can use [test cards](https://docs.lemonsqueezy.com/help/getting-started/test-mode#test-card-numbers) to mimic real purchases.
+
+Webhook events will be sent for all test mode purchases, just as they will for live purchases.
