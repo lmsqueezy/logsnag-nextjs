@@ -6,13 +6,20 @@ A Next.js app that sends webhook events to LogSnag.
 
 ## Get set up
 
-1. [Create a Lemon Squeezy store](https://app.lemonsqueezy.com/register)
+1. [Create a Lemon Squeezy store](https://app.lemonsqueezy.com/register).
 2. [Set up webhooks](https://app.lemonsqueezy.com/help/webhooks), selecting the events you want to track in LogSnag.
-3. [Sign up to LogSnag](https://app.logsnag.com/)
-4. [Create an API token](https://app.logsnag.com/dashboard/settings/api)
-5. Deploy this app (see below) and add environment variables from Lemon Squeezy and LogSnag
+3. [Sign up to LogSnag](https://app.logsnag.com/).
+4. [Create an API token](https://app.logsnag.com/dashboard/settings/api).
+5. Deploy this app (see below) and add environment variables from Lemon Squeezy and LogSnag.
 
 Now any events you selected in step 2 will appear in LogSnag as soon as they occur.
+
+Note: The catch-all `subscription_updated` event is not implemented to avoid receiving duplicate events. Don't select it when creating a webhook in Lemon Squeezy.
+
+### Helpful links
+
+- [Read when different webhooks are sent by Lemon Squeezy](https://docs.lemonsqueezy.com/api/webhooks#event-types)
+- [Read LogSnag API docs](https://docs.logsnag.com/endpoints/log)
 
 ## Deploy to Vercel
 

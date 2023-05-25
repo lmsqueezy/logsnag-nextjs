@@ -1,3 +1,13 @@
+/*
+
+- To turn off notifications for specific events change "notify" to false
+- To turn off specific events, unselect them in the webhook settings in Lemon Squeezy
+- "subscription_updated" is not implemented as it doesn't make sense for this kind of alert system
+
+Read about when different events are sent at https://docs.lemonsqueezy.com/api/webhooks#event-types
+
+*/
+
 import { LogSnag } from 'logsnag';
 
 const logsnag = new LogSnag({
@@ -48,6 +58,174 @@ export async function POST(request: Request) {
         } 
       }
 
+      break;
+
+    case 'order_refunded':
+
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: "Order refunded",
+        description: `${obj['first_order_item']['product_name']} (${obj['first_order_item']['variant_name']})\n${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nOrder #${obj['order_number']} • ${obj['user_email']} • ${obj['user_name']}`,
+        icon: "◀️",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id']
+        } 
+      }
+
+      break;
+
+    case 'subscription_created':
+
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: "New subscription",
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        icon: "💎",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id'],
+          'subscription-id': objId
+        } 
+      }
+      
+      break;
+
+    case 'subscription_updated':
+
+      /* Not implemented */
+
+      return new Response('OK')
+
+    case 'subscription_cancelled':
+
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: "Subscription cancelled",
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        icon: "❌",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id'],
+          'subscription-id': objId
+        } 
+      }
+      
+      break;
+
+    case 'subscription_resumed':
+
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: "Subscription resumed",
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        icon: "👍",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id'],
+          'subscription-id': objId
+        } 
+      }
+      
+      break;
+
+    case 'subscription_paused':
+
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: "Subscription paused",
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        icon: "✋",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id'],
+          'subscription-id': objId
+        } 
+      }
+      
+      break;
+
+    case 'subscription_unpaused':
+
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: "Subscription unpaused",
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        icon: "👍",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id'],
+          'subscription-id': objId
+        } 
+      }
+      
+      break;
+
+    case 'subscription_payment_success':
+      
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: `Subscription payment (${obj['billing_reason']})`,
+        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}`,
+        icon: "💵",
+        notify: true,
+        tags: {
+          'subscription-id': obj['subscription_id']
+        } 
+      }
+      
+      break;
+
+    case 'subscription_payment_failed':
+      
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: `Subscription payment failed (${obj['billing_reason']})`,
+        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}`,
+        icon: "🚫",
+        notify: true,
+        tags: {
+          'subscription-id': obj['subscription_id']
+        } 
+      }
+      
+      break;
+
+    case 'subscription_payment_recovered':
+      
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: `Subscription payment recovered (${obj['billing_reason']})`,
+        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}`,
+        icon: "😎",
+        notify: true,
+        tags: {
+          'subscription-id': obj['subscription_id']
+        } 
+      }
+      
+      break;
+
+    case 'license_key_created':
+      
+      eventData = {
+        channel: process.env.LOGSNAG_CHANNEL,
+        event: `License key created`,
+        description: `${obj['user_email']} • ${obj['user_name']}`,
+        icon: "🔑",
+        notify: true,
+        tags: {
+          email: obj['user_email'],
+          'customer-id': obj['customer_id']
+        } 
+      }
+      
       break;
 
   }
