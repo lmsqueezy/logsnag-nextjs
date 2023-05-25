@@ -49,13 +49,14 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "New order",
-        description: `${obj['first_order_item']['product_name']} (${obj['first_order_item']['variant_name']})\n${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nOrder #${obj['order_number']} • ${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['first_order_item']['product_name']} (${obj['first_order_item']['variant_name']})\n${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nOrder #${obj['order_number']} • ${obj['user_email']} • ${obj['user_name']}\n[View order](https://app.lemonsqueezy.com/orders/${obj['identifier']})`,
         icon: "💳",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id']
-        } 
+        },
+        parser: "markdown"
       }
 
       break;
@@ -65,13 +66,14 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "Order refunded",
-        description: `${obj['first_order_item']['product_name']} (${obj['first_order_item']['variant_name']})\n${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nOrder #${obj['order_number']} • ${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['first_order_item']['product_name']} (${obj['first_order_item']['variant_name']})\n${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nOrder #${obj['order_number']} • ${obj['user_email']} • ${obj['user_name']}\n[View order](https://app.lemonsqueezy.com/orders/${obj['identifier']})`,
         icon: "◀️",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id']
-        } 
+        },
+        parser: "markdown"
       }
 
       break;
@@ -81,14 +83,15 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "New subscription",
-        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${objId})`,
         icon: "💎",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id'],
           'subscription-id': objId
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -104,14 +107,15 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "Subscription cancelled",
-        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${objId})`,
         icon: "❌",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id'],
           'subscription-id': objId
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -121,14 +125,15 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "Subscription resumed",
-        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${objId})`,
         icon: "👍",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id'],
           'subscription-id': objId
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -138,14 +143,15 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "Subscription paused",
-        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${objId})`,
         icon: "✋",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id'],
           'subscription-id': objId
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -155,14 +161,15 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: "Subscription unpaused",
-        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['product_name']} (${obj['variant_name']})\nSubscription #${objId}\n${obj['user_email']} • ${obj['user_name']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${objId})`,
         icon: "👍",
         notify: true,
         tags: {
           email: obj['user_email'],
           'customer-id': obj['customer_id'],
           'subscription-id': objId
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -172,12 +179,13 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: `Subscription payment (${obj['billing_reason']})`,
-        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}`,
+        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${obj['subscription_id']})`,
         icon: "💵",
         notify: true,
         tags: {
           'subscription-id': obj['subscription_id']
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -187,12 +195,13 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: `Subscription payment failed (${obj['billing_reason']})`,
-        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}`,
+        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${obj['subscription_id']})`,
         icon: "🚫",
         notify: true,
         tags: {
           'subscription-id': obj['subscription_id']
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -202,12 +211,13 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: `Subscription payment recovered (${obj['billing_reason']})`,
-        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}`,
+        description: `${obj['subtotal_formatted']} (\+${obj['tax_formatted']} tax)\nSubscription #${obj['subscription_id']}\n[View subscription](https://app.lemonsqueezy.com/subscriptions/${obj['subscription_id']})`,
         icon: "😎",
         notify: true,
         tags: {
           'subscription-id': obj['subscription_id']
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
@@ -217,13 +227,15 @@ export async function POST(request: Request) {
       eventData = {
         channel: process.env.LOGSNAG_CHANNEL,
         event: `License key created`,
-        description: `${obj['user_email']} • ${obj['user_name']}`,
+        description: `${obj['user_email']} • ${obj['user_name']}\n[View license](https://app.lemonsqueezy.com/licenses/${objId})`,
         icon: "🔑",
         notify: true,
         tags: {
+          'license-id': objId,
           email: obj['user_email'],
           'customer-id': obj['customer_id']
-        } 
+        },
+        parser: "markdown"
       }
       
       break;
