@@ -7,10 +7,10 @@ A Next.js app that sends webhook events to LogSnag.
 ## Get set up
 
 1. [Create a Lemon Squeezy store](https://app.lemonsqueezy.com/register).
-2. [Set up webhooks](https://app.lemonsqueezy.com/help/webhooks), selecting the events you want to track in LogSnag.
-3. [Sign up to LogSnag](https://app.logsnag.com/).
-4. [Create an API token](https://app.logsnag.com/dashboard/settings/api).
-5. Deploy this app (see below) and add environment variables from Lemon Squeezy and LogSnag.
+2. [Sign up to LogSnag](https://app.logsnag.com/).
+3. [Create an API token](https://app.logsnag.com/dashboard/settings/api).
+4. Deploy this app (see below) and add environment variables from Lemon Squeezy and LogSnag.
+5. [Create a webhook in Lemon Squeezy](https://app.lemonsqueezy.com/help/webhooks), selecting the events you want to track in LogSnag. The webhook endpoint is at `/webhook`.
 
 Now any events you selected in step 2 will appear in LogSnag as soon as they occur.
 
