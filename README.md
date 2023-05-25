@@ -2,7 +2,7 @@
 
 A Next.js app that sends webhook events to LogSnag.
 
-[LogSnag](https://logsnag.com/) is a brilliant logging and event tool, letting you keep track of events, insights and analytics from all of your apps in a dedicated space.
+[LogSnag](https://logsnag.com/) is a logging and event tool, letting you keep track of events, insights and analytics from all of your apps in a dedicated space.
 
 ## Get set up
 
@@ -29,7 +29,7 @@ Note: The catch-all `subscription_updated` event is not implemented to avoid rec
 
 As part of the deployment you need to set 
 
-- `LEMONSQUEEZY_WEBHOOK_SECRET` - The signing secret you added in the webhook creation form. ([Go to Lemon Squeezy webhook settings](https://app.lemonsqueezy.com/help/webhooks))
+- `LEMONSQUEEZY_WEBHOOK_SECRET` - The signing secret you added in the webhook creation form. ([Go to Lemon Squeezy webhook settings](https://app.lemonsqueezy.com/settings/webhooks))
 - `LOGSNAG_TOKEN` - API token from LogSnag ([Go to LogSnag API settings](https://app.logsnag.com/dashboard/settings/api))
 - `LOGSNAG_PROJECT` - Name of the project in LogSnag that you want events sent to.
 - `LOGSNAG_CHANNEL` - Name of the channel in your LogSnag project that you want events sent to.
