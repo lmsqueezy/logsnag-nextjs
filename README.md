@@ -4,6 +4,8 @@ A Next.js app that sends webhook events to LogSnag.
 
 [LogSnag](https://logsnag.com/) is a logging and event tool, letting you keep track of events, insights and analytics from all of your apps in a dedicated space.
 
+[Read our tutorial](https://docs.lemonsqueezy.com/guides/tutorials/webhooks-logsnag) to learn how the code works.
+
 ## Get set up
 
 1. [Create a Lemon Squeezy store](https://app.lemonsqueezy.com/register).
